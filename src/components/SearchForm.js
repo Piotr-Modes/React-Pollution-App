@@ -7,13 +7,6 @@ const SearchForm = props => {
     formErrors: [],
   })
 
-  const [countryDropdownOptionsState, setCountryDropdownOptionsState] = useState({
-    Poland: 'PL',
-    Germany: 'DE',
-    Spain: 'ES',
-    France: 'FR',
-  })
-
   useEffect(() => {
     if (props.searchValue !== '') isSearchFormValid(props.searchValue)
   }, [props.searchValue])
@@ -26,11 +19,9 @@ const SearchForm = props => {
       formErrors.push('Please fill in the country name')
       valid = false
     }
-    if (Object.keys(countryDropdownOptionsState).indexOf(selectedCountry) === -1) {
+    if (Object.keys(props.allowedCountries).indexOf(selectedCountry) === -1) {
       formErrors.push(
-        `Sorry, the only allowed options are: ${Object.keys(countryDropdownOptionsState).join(
-          ', ',
-        )}`,
+        `Sorry, the only allowed options are: ${Object.keys(props.allowedCountries).join(', ')}`,
       )
       valid = false
     }
@@ -45,7 +36,7 @@ const SearchForm = props => {
     props.updateSearchValue(selectedCountry)
 
     if (!isSearchFormValid(selectedCountry)) return
-    props.fetchLatestPollutionMeasurments(countryDropdownOptionsState[selectedCountry])
+    props.fetchLatestPollutionMeasurments(props.allowedCountries[selectedCountry])
   }
   return (
     <form onSubmit={handleFormSubmit}>
@@ -53,7 +44,7 @@ const SearchForm = props => {
       <div className="form-autocomplete-container">
         <FormErrors formErrors={searchFormState.formErrors} />
         <Autocomplete
-          suggestions={Object.keys(countryDropdownOptionsState)}
+          suggestions={Object.keys(props.allowedCountries)}
           handleFormSubmit={props.handleFormSubmit}
           searchValue={props.searchValue}
           updateSearchValue={props.updateSearchValue}

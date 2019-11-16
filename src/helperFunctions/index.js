@@ -9,3 +9,6 @@ export const capitalize = s => {
   if (typeof s !== 'string') return ''
   return s.charAt(0).toUpperCase() + s.slice(1).toLowerCase()
 }
+
+export const getObjectKeyByValue = (object, value) =>
+  Object.keys(object).find(key => object[key] === value)
