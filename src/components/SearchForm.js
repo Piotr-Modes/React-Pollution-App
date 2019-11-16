@@ -1,0 +1,78 @@
+import React, { useEffect, useState } from 'react'
+import { capitalize } from '../helperFunctions'
+import Autocomplete from './Autocomplete'
+
+const SearchForm = props => {
+  const [searchFormState, setSearchFormState] = useState({
+    formErrors: [],
+  })
+
+  const [countryDropdownOptionsState, setCountryDropdownOptionsState] = useState({
+    Poland: 'PL',
+    Germany: 'DE',
+    Spain: 'ES',
+    France: 'FR',
+  })
+
+  useEffect(() => {
+    if (props.searchValue !== '') isSearchFormValid(props.searchValue)
+  }, [props.searchValue])
+
+  const isSearchFormValid = selectedCountry => {
+    let valid = true
+    const formErrors = []
+
+    if (selectedCountry === '') {
+      formErrors.push('Please fill in the country name')
+      valid = false
+    }
+    if (Object.keys(countryDropdownOptionsState).indexOf(selectedCountry) === -1) {
+      formErrors.push(
+        `Sorry, the only allowed options are: ${Object.keys(countryDropdownOptionsState).join(
+          ', ',
+        )}`,
+      )
+      valid = false
+    }
+    setSearchFormState({ ...searchFormState, formErrors: [...formErrors] })
+    return valid
+  }
+
+  const handleFormSubmit = e => {
+    e.preventDefault()
+    if (props.isLoading) return
+    const selectedCountry = capitalize(e.target.country.value)
+    props.updateSearchValue(selectedCountry)
+
+    if (!isSearchFormValid(selectedCountry)) return
+    props.fetchLatestPollutionMeasurments(countryDropdownOptionsState[selectedCountry])
+  }
+  return (
+    <form onSubmit={handleFormSubmit}>
+      <h1 className="form-header">Search for the most polluted cities in:</h1>
+      <div className="form-autocomplete-container">
+        <FormErrors formErrors={searchFormState.formErrors} />
+        <Autocomplete
+          suggestions={Object.keys(countryDropdownOptionsState)}
+          handleFormSubmit={props.handleFormSubmit}
+          searchValue={props.searchValue}
+          updateSearchValue={props.updateSearchValue}
+          placeholder="Country"
+        />
+      </div>
+      <button type="submit">
+        <i className="fas fa-search"></i>
+      </button>
+    </form>
+  )
+}
+
+const FormErrors = ({ formErrors }) => {
+  return (
+    <div className="form-errors">
+      <p>{formErrors[0]}</p>
+    </div>
+  )
+}
+
+export default SearchForm

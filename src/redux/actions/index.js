@@ -2,6 +2,7 @@
 import OPENAQ from '../../apis/OPENAQ'
 import WIKIPEDIA from '../../apis/WIKIPEDIA'
 import {
+  UPDATE_SEARCH_VALUE,
   FETCH_CITY_DETAILS_REQUESTED,
   FETCH_CITY_DETAILS_SUCCESS,
   FETCH_CITY_DETAILS_FAILED,
@@ -12,6 +13,13 @@ import {
   FETCH_WIKIPEDIA_PAGE_IDS_SUCCESS,
   FETCH_WIKIPEDIA_PAGE_IDS_FAILED,
 } from './types'
+
+export const updateSearchValue = value => {
+  return {
+    type: UPDATE_SEARCH_VALUE,
+    payload: value,
+  }
+}
 
 export const fetchCityDetailsRequested = data => {
   return {
