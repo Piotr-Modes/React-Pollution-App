@@ -60,7 +60,6 @@ const App = props => {
       <Offline>
         <OfflineMessage />
       </Offline>
-      <OfflineMessage />
       <SearchForm
         isLoading={props.isLoading}
         searchValue={props.searchValue}
