@@ -1,24 +1,20 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
-// import {
- 
-// } from '../redux/actions'
+import { fetchLatestPollutionMeasurments, getCityDetails } from '../redux/actions'
 
 const App = props => {
-  return (
-      <div className="app">
-        app
-      </div>
-  ) 
+  // useEffect(() => {
+  //   props.fetchLatestPollutionMeasurments('PL')
+
+  // }, [])
+  return <div className="app">app</div>
 }
 
 const mapStateToProps = state => {
-  return {
-  }
+  return {}
 }
 
-export default connect(
-  mapStateToProps,
-  {
-  },
-)(App)
+export default connect(mapStateToProps, {
+  fetchLatestPollutionMeasurments,
+  getCityDetails,
+})(App)
