@@ -1,0 +1,80 @@
+.accordion__section {
+  display: flex;
+  flex-direction: column;
+  margin: 6px 0;
+  box-shadow: 0 8px 6px -6px rgba(black, 0.2);
+}
+
+.accordion {
+  background: rgba(white, 0.15);
+  box-shadow: 0 8px 6px -6px rgba(black, 0.2);
+  color: white;
+  cursor: pointer;
+  padding: 0px 20px;
+  display: flex;
+  align-items: center;
+  border: none;
+  outline: none;
+  transition: all 0.3s ease-in-out;
+
+  &__title {
+    font-size: 17px;
+    line-height: 15px;
+    text-shadow: 2px 4px 3px rgba(0, 0, 0, 0.3);
+  }
+
+  &__number {
+    font-size: 14px;
+    font-weight: 600;
+    position: relative;
+    left: -10px;
+    color: rgba(#274046, 0.7);
+  }
+
+  &__danger {
+    font-size: 13px;
+    color: rgba(#274046, 0.7);
+    font-weight: 600;
+    margin-left: auto;
+    & span {
+      color: $color-negative;
+    }
+  }
+  &__icon {
+    margin-left: auto;
+    transition: transform 0.6s ease;
+    & .rotate {
+      transform: rotate(90deg);
+    }
+  }
+
+  &__content {
+    background: rgba(white, 0.05);
+    overflow: hidden;
+    transition: max-height 0.4s ease-in-out;
+  }
+
+  &__text {
+    text-align: justify;
+    font-weight: 400;
+    font-size: 13px;
+    padding: 18px;
+  }
+
+  & i {
+    position: absolute;
+    right: -20px;
+    transition: all 0.2s ease;
+  }
+  &.active {
+    & i {
+      color: $color-positive;
+      transform: rotate(90deg);
+    }
+  }
+  &:hover,
+  .active {
+    background: rgba(white, 0.3);
+    transform: scale(1.02);
+  }
+}
