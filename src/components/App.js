@@ -4,6 +4,8 @@ import {
   updateSearchValue,
   fetchLatestPollutionMeasurments,
   getCityDetails,
+  checkForPullutionAppDataInLocalStorage,
+  savePollutionAppDataToLocalStorage,
 } from '../redux/actions'
 
 import SearchForm from './SearchForm'
@@ -22,6 +24,16 @@ const App = props => {
     Spain: 'ES',
     France: 'FR',
   }
+
+  useEffect(() => {
+    props.checkForPullutionAppDataInLocalStorage()
+  }, [])
+
+  useEffect(() => {
+    console.log(props.searchValue)
+    props.savePollutionAppDataToLocalStorage()
+  }, [props.searchValue, props.cityDetails])
+
   const renderTenMostPullutedCities = (cityObj, index) => {
     return (
       <Accordion
@@ -73,4 +85,6 @@ export default connect(mapStateToProps, {
   updateSearchValue,
   fetchLatestPollutionMeasurments,
   getCityDetails,
+  checkForPullutionAppDataInLocalStorage,
+  savePollutionAppDataToLocalStorage,
 })(App)

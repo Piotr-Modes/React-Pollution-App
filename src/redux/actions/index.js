@@ -12,6 +12,10 @@ import {
   FETCH_WIKIPEDIA_PAGE_IDS_REQUESTED,
   FETCH_WIKIPEDIA_PAGE_IDS_SUCCESS,
   FETCH_WIKIPEDIA_PAGE_IDS_FAILED,
+  SAVE_SEARCH_VALUE_TO_LOCAL_STORAGE,
+  LOAD_SEARCH_VALUE_FROM_LOCAL_STORAGE,
+  SAVE_CITY_DETAILS_TO_LOCAL_STORAGE,
+  LOAD_CITY_DETAILS_FROM_LOCAL_STORAGE,
 } from './types'
 
 export const updateSearchValue = value => {
@@ -122,5 +126,59 @@ export const fetchLatestPollutionMeasurments = countryName => async dispatch => 
     dispatch(fetchLatestPollutionMeasurmentsSuccess({ response: response.data }))
   } catch (err) {
     dispatch(fetchLatestPollutionMeasurmentsFailed({}))
+  }
+}
+
+export const saveSearchValueToLocalStorage = () => {
+  return {
+    type: SAVE_SEARCH_VALUE_TO_LOCAL_STORAGE,
+  }
+}
+
+export const loadSearchValueFromLocalStorage = searchValue => {
+  return {
+    type: LOAD_SEARCH_VALUE_FROM_LOCAL_STORAGE,
+    payload: searchValue,
+  }
+}
+
+export const saveCityDetailsToLocalStorage = () => {
+  return {
+    type: SAVE_CITY_DETAILS_TO_LOCAL_STORAGE,
+  }
+}
+
+export const loadCityDetailsFromLocalStorage = cityDetails => {
+  return {
+    type: LOAD_CITY_DETAILS_FROM_LOCAL_STORAGE,
+    payload: cityDetails,
+  }
+}
+
+export const savePollutionAppDataToLocalStorage = () => async dispatch => {
+  await dispatch(saveSearchValueToLocalStorage())
+  dispatch(saveCityDetailsToLocalStorage())
+}
+
+export const loadPollutionAppDataFromLocalStorage = data => dispatch => {
+  dispatch(loadSearchValueFromLocalStorage(data.searchValue))
+  dispatch(loadCityDetailsFromLocalStorage(data.cityDetails))
+}
+
+export const setPollutionAppDataInitialStateToLocalStorage = () => {
+  const initialState = {
+    searchValue: '',
+    cityDetails: {},
+  }
+  localStorage.setItem('pollutionAppData', JSON.stringify(initialState))
+}
+
+export const checkForPullutionAppDataInLocalStorage = () => async dispatch => {
+  try {
+    const response = await JSON.parse(localStorage.getItem('pollutionAppData'))
+    if (response) dispatch(loadPollutionAppDataFromLocalStorage(response))
+    if (!response) dispatch(setPollutionAppDataInitialStateToLocalStorage())
+  } catch (err) {
+    console.log(err)
   }
 }

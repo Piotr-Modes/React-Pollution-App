@@ -5,7 +5,10 @@ import {
   FETCH_WIKIPEDIA_PAGE_IDS_REQUESTED,
   FETCH_WIKIPEDIA_PAGE_IDS_SUCCESS,
   FETCH_WIKIPEDIA_PAGE_IDS_FAILED,
+  SAVE_CITY_DETAILS_TO_LOCAL_STORAGE,
+  LOAD_CITY_DETAILS_FROM_LOCAL_STORAGE,
 } from '../actions/types'
+import { updatePollutionAppDataInLocalStorage } from '../../helperFunctions'
 
 const initialState = {
   list: {},
@@ -45,6 +48,14 @@ export default (state = initialState, action) => {
       return {
         ...state,
         isLoading: false,
+      }
+    case SAVE_CITY_DETAILS_TO_LOCAL_STORAGE:
+      updatePollutionAppDataInLocalStorage('cityDetails', state.list)
+      return state
+    case LOAD_CITY_DETAILS_FROM_LOCAL_STORAGE:
+      return {
+        ...state,
+        list: { ...state.list, ...action.payload },
       }
   }
 }

@@ -12,3 +12,12 @@ export const capitalize = s => {
 
 export const getObjectKeyByValue = (object, value) =>
   Object.keys(object).find(key => object[key] === value)
+
+export const updatePollutionAppDataInLocalStorage = async (key, data) => {
+  const pollutionAppData = await JSON.parse(localStorage.getItem('pollutionAppData'))
+
+  if (!pollutionAppData) return
+
+  pollutionAppData[key] = data
+  localStorage.setItem('pollutionAppData', JSON.stringify(pollutionAppData))
+}
