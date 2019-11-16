@@ -8,6 +8,7 @@ const initialState = {
   latestPullutionMeasurmentsInGivenCountry: [],
   tenMostPullutedCitiesInGivenCountry: [],
   isLoading: false,
+  errorMessage: null,
 }
 
 export default (state = initialState, action) => {
@@ -18,6 +19,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         isLoading: true,
+        errorMessage: null,
       }
     case FETCH_LATEST_POLLUTION_MEASURMENTS_SUCCESS:
       return {
@@ -33,6 +35,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         isLoading: false,
+        errorMessage: action.payload,
       }
   }
 }

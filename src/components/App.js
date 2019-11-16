@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { Offline } from 'react-detect-offline'
 import {
@@ -13,6 +13,7 @@ import SearchForm from './SearchForm'
 import Accordion from './Accordion'
 import List from './utylities/List'
 import OfflineMessage from './utylities/OfflineMessage'
+import ErrorMessage from './utylities/ErrorMessage'
 import withLoading from './utylities/withLoading'
 
 import { getObjectKeyByValue } from '../helperFunctions'
@@ -67,6 +68,7 @@ const App = props => {
         updateSearchValue={props.updateSearchValue}
         fetchLatestPollutionMeasurments={props.fetchLatestPollutionMeasurments}
       />
+      <ErrorMessage errorMessage={props.errorMessage} />
       <ListWithLoading
         isLoading={props.isLoading}
         list={props.tenMostPullutedCitiesInGivenCountry}
@@ -82,6 +84,7 @@ const mapStateToProps = state => {
     isLoading: state.latestPollutionMeasurments.isLoading,
     tenMostPullutedCitiesInGivenCountry:
       state.latestPollutionMeasurments.tenMostPullutedCitiesInGivenCountry,
+    errorMessage: state.latestPollutionMeasurments.errorMessage,
     cityDetails: state.cityDetails.list,
   }
 }
