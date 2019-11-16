@@ -98,10 +98,9 @@ export const getCityDetails = (cityName, countryName) => (dispatch, getState) =>
   })
 }
 
-export const fetchLatestPollutionMeasurmentsRequested = data => {
+export const fetchLatestPollutionMeasurmentsRequested = () => {
   return {
     type: FETCH_LATEST_POLLUTION_MEASURMENTS_REQUESTED,
-    payload: data,
   }
 }
 
@@ -112,20 +111,20 @@ export const fetchLatestPollutionMeasurmentsSuccess = data => {
   }
 }
 
-export const fetchLatestPollutionMeasurmentsFailed = data => {
+export const fetchLatestPollutionMeasurmentsFailed = () => {
   return {
     type: FETCH_LATEST_POLLUTION_MEASURMENTS_FAILED,
-    payload: data,
+    payload: 'Something went wrong :(',
   }
 }
 
 export const fetchLatestPollutionMeasurments = countryName => async dispatch => {
-  dispatch(fetchLatestPollutionMeasurmentsRequested({}))
+  dispatch(fetchLatestPollutionMeasurmentsRequested())
   try {
     const response = await OPENAQ.getLatestPullutionDataForGivenCountry(countryName)
     dispatch(fetchLatestPollutionMeasurmentsSuccess({ response: response.data }))
   } catch (err) {
-    dispatch(fetchLatestPollutionMeasurmentsFailed({}))
+    dispatch(fetchLatestPollutionMeasurmentsFailed())
   }
 }
 
