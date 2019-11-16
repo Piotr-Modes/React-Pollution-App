@@ -65,7 +65,7 @@ const Autocomplete = props => {
     let suggestionsListComponent
     if (autocompleteState.showSuggestions && props.searchValue) {
       suggestionsListComponent = (
-        <ul class="suggestions">
+        <ul className="suggestions">
           {autocompleteState.filteredSuggestions.map((suggestion, index) => (
             <li
               className={index === autocompleteState.activeSuggestion ? 'active' : ''}

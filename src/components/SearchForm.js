@@ -39,9 +39,9 @@ const SearchForm = props => {
     props.fetchLatestPollutionMeasurments(props.allowedCountries[selectedCountry])
   }
   return (
-    <form onSubmit={handleFormSubmit}>
-      <h1 className="form-header">Search for the most polluted cities in:</h1>
-      <div className="form-autocomplete-container">
+    <form className="search-form" onSubmit={handleFormSubmit}>
+      <h1 className="search-form__header">Search for the most polluted cities in:</h1>
+      <div className="search-form__autocomplete-container">
         <FormErrors formErrors={searchFormState.formErrors} />
         <Autocomplete
           suggestions={Object.keys(props.allowedCountries)}

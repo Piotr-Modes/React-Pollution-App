@@ -1,41 +1,42 @@
-.loader-2 {
-	$color: white;
-	$light: fade-out($color, 0.8);
-  	margin: 0 auto;
-	display: block;
-	font-size: 10px;
-	height: 5em;
-	width: 1em;
-	animation: fade-bars 1s linear infinite;
-	animation-delay: 0.1s;
-	box-shadow: 0em 5em 0 0em $color;
-	transform: translateY(-100%);
-	&::before, &::after {
-		content: "";
-		position: absolute;
-		left: -2em;
-		top: 0;
-		height: 100%;
-		width: 100%;
-		box-shadow: 0em 5em 0 0em $color;
-		animation: fade-bars 1s linear infinite;
-		animation-delay: 0s;
-	}
-	&::after {
-		left: 2em;
-		animation: fade-bars 1s linear infinite;
-		animation-delay: 0.2s;
-	}
-	@keyframes fade-bars {
-		0% {
-			box-shadow: 0em 5em 0 0em $color;
-		}
-		25%, 75% {
-			box-shadow: 0em 5em 0 0em $light;
-		}
-		100% {
-			box-shadow: 0em 5em 0 0em $color;
-		}
-	}
+.loader {
+  $color: white;
+  $light: fade-out($color, 0.8);
+  margin: 0 auto;
+  display: block;
+  font-size: 10px;
+  height: 5em;
+  width: 1em;
+  animation: fade-bars 1s linear infinite;
+  animation-delay: 0.1s;
+  box-shadow: 0em 5em 0 0em $color;
+  transform: translateY(-100%);
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    left: -2em;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    box-shadow: 0em 5em 0 0em $color;
+    animation: fade-bars 1s linear infinite;
+    animation-delay: 0s;
+  }
+  &::after {
+    left: 2em;
+    animation: fade-bars 1s linear infinite;
+    animation-delay: 0.2s;
+  }
+  @keyframes fade-bars {
+    0% {
+      box-shadow: 0em 5em 0 0em $color;
+    }
+    25%,
+    75% {
+      box-shadow: 0em 5em 0 0em $light;
+    }
+    100% {
+      box-shadow: 0em 5em 0 0em $color;
+    }
+  }
 }
-

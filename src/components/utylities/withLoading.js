@@ -1,9 +1,10 @@
 import React from 'react'
+import Loader from './Loader'
 
 const withLoading = Component => {
   return ({ isLoading, ...props }) => {
     if (!isLoading) return <Component {...props} />
-    return <div className="loader-2"></div>
+    return <Loader />
   }
 }
 
