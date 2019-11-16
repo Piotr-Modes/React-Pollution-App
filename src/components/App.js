@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
+import { Offline } from 'react-detect-offline'
 import {
   updateSearchValue,
   fetchLatestPollutionMeasurments,
@@ -11,6 +12,7 @@ import {
 import SearchForm from './SearchForm'
 import Accordion from './Accordion'
 import List from './utylities/List'
+import OfflineMessage from './utylities/OfflineMessage'
 import withLoading from './utylities/withLoading'
 
 import { getObjectKeyByValue } from '../helperFunctions'
@@ -55,6 +57,10 @@ const App = props => {
   }
   return (
     <div className="app">
+      <Offline>
+        <OfflineMessage />
+      </Offline>
+      <OfflineMessage />
       <SearchForm
         isLoading={props.isLoading}
         searchValue={props.searchValue}
