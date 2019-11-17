@@ -5,10 +5,11 @@ import Autocomplete from './Autocomplete'
 const SearchForm = props => {
   const [searchFormState, setSearchFormState] = useState({
     formErrors: [],
+    formTouched: false,
   })
 
   useEffect(() => {
-    if (props.searchValue !== '') isSearchFormValid(props.searchValue)
+    if (searchFormState.formTouched) isSearchFormValid(props.searchValue)
   }, [props.searchValue])
 
   const isSearchFormValid = selectedCountry => {
@@ -29,6 +30,10 @@ const SearchForm = props => {
     return valid
   }
 
+  const handleOnFocus = () => {
+    setSearchFormState({ ...searchFormState, formTouched: true })
+  }
+
   const handleFormSubmit = e => {
     e.preventDefault()
     if (props.isLoading) return
@@ -39,7 +44,7 @@ const SearchForm = props => {
     props.fetchLatestPollutionMeasurments(props.allowedCountries[selectedCountry])
   }
   return (
-    <form className="search-form" onSubmit={handleFormSubmit}>
+    <form className="search-form" onFocus={handleOnFocus} onSubmit={handleFormSubmit}>
       <h1 className="search-form__header">Search for the most polluted cities in:</h1>
       <div className="search-form__inputs-container">
         <FormErrors formErrors={searchFormState.formErrors} />

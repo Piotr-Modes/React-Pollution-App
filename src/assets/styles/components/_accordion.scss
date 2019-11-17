@@ -66,15 +66,13 @@
     right: -20px;
     transition: all 0.2s ease;
   }
-  &.active {
-    & i {
-      color: $color-positive;
-      transform: rotate(90deg);
-    }
-  }
-  &:hover,
-  .active {
+  &.active,
+  &:hover {
     background: rgba(white, 0.3);
     transform: scale(1.02);
+  }
+  &.active i {
+    color: $color-positive;
+    transform: rotate(90deg);
   }
 }
