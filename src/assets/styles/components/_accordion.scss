@@ -70,9 +70,9 @@
   &:hover {
     background: rgba(white, 0.3);
     transform: scale(1.02);
-    & i {
-      color: $color-positive;
-      transform: rotate(90deg);
-    }
+  }
+  &.active i {
+    color: $color-positive;
+    transform: rotate(90deg);
   }
 }
