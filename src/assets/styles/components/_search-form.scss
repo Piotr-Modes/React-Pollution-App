@@ -9,6 +9,7 @@
   padding-bottom: 20px;
   &__header {
     margin-bottom: 0;
+    font-size: 3.3rem;
   }
   &__inputs-container {
     position: relative;
@@ -20,7 +21,7 @@
 
       & input {
         font-family: 'Fira Sans Condensed', arial;
-        font-size: 17px;
+        font-size: 1.8rem;
         width: 100%;
         border: none;
         height: 43px;
@@ -46,7 +47,7 @@
         & li {
           padding: 10px 0;
           background: rgba(white, 0.35);
-
+          font-size: 1.5rem;
           cursor: pointer;
           transition: all 0.2s ease-in-out;
 
@@ -68,7 +69,7 @@
       padding: 10px 20px;
       color: white;
       height: 43px;
-      font-size: 20px;
+      font-size: 2rem;
       outline: none;
       box-shadow: 0 8px 6px -6px rgba(black, 0.2);
       cursor: pointer;
@@ -86,10 +87,10 @@
       transform: translateX(-50%);
       white-space: nowrap;
       & p {
-        font-size: 12px;
+        font-size: 1.2rem;
         color: red;
         @media (max-width: 350px) {
-          font-size: 10px;
+          font-size: 1rem;
         }
       }
     }
