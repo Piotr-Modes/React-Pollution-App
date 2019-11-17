@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react'
 import Loader from './utylities/Loader'
+import ErrorMessage from './utylities/ErrorMessage'
 
 const Accordion = props => {
   const [activeState, setActiveState] = useState(false)
@@ -45,7 +46,7 @@ const Accordion = props => {
           <div className="accordion__text" dangerouslySetInnerHTML={{ __html: props.content }} />
         ) : (
           <div className="accordion__text">
-            <Loader />{' '}
+            {props.errorMessage ? <ErrorMessage errorMessage={props.errorMessage} /> : <Loader />}
           </div>
         )}
       </div>

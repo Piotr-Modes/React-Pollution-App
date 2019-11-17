@@ -58,6 +58,7 @@ const App = props => {
         content={props.cityDetails[cityObj.city]}
         activeAccordionState={activeAccordionState}
         setActiveAccordionState={setActiveAccordionState}
+        errorMessage={props.cityDetailsErrors[cityObj.city]}
       />
     )
   }
@@ -91,6 +92,7 @@ const mapStateToProps = state => {
       state.latestPollutionMeasurments.tenMostPullutedCitiesInGivenCountry,
     errorMessage: state.latestPollutionMeasurments.errorMessage,
     cityDetails: state.cityDetails.list,
+    cityDetailsErrors: state.cityDetails.errors,
   }
 }
 
