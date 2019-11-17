@@ -11,10 +11,16 @@ const Accordion = props => {
     setHeightState(!activeState ? '0px' : `${content.current.scrollHeight}px`)
   }, [props.content])
 
+  useEffect(() => {
+    if (props.activeAccordionState === props.id) return
+    if (activeState) toggleAccordion()
+  }, [props.activeAccordionState])
+
   const handleOnClick = () => {
     if (!props.content && !activeState) {
       props.getCityDetails()
     }
+    props.setActiveAccordionState(props.id)
     toggleAccordion()
     // return ()=>toggleAccordion()
   }

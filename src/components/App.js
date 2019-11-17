@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import { Offline } from 'react-detect-offline'
 import {
@@ -21,6 +21,8 @@ import { getObjectKeyByValue } from '../helperFunctions'
 const ListWithLoading = withLoading(List)
 
 const App = props => {
+  const [activeAccordionState, setActiveAccordionState] = useState('')
+
   const allowedCountries = {
     Poland: 'PL',
     Germany: 'DE',
@@ -41,6 +43,7 @@ const App = props => {
     return (
       <Accordion
         key={index}
+        id={index}
         listNumber={index + 1}
         pm25Value={cityObj.value}
         getCityDetails={() =>
@@ -53,6 +56,8 @@ const App = props => {
         }
         title={cityObj.city}
         content={props.cityDetails[cityObj.city]}
+        activeAccordionState={activeAccordionState}
+        setActiveAccordionState={setActiveAccordionState}
       />
     )
   }
