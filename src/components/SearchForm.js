@@ -46,7 +46,7 @@ const SearchForm = props => {
   return (
     <form className="search-form" onFocus={handleOnFocus} onSubmit={handleFormSubmit}>
       <h1 className="search-form__header">Search for the most polluted cities in:</h1>
-      <div className="search-form__autocomplete-container">
+      <div className="search-form__inputs-container">
         <FormErrors formErrors={searchFormState.formErrors} />
         <Autocomplete
           suggestions={Object.keys(props.allowedCountries)}
@@ -55,10 +55,10 @@ const SearchForm = props => {
           updateSearchValue={props.updateSearchValue}
           placeholder="Country"
         />
+        <button type="submit">
+          <i className="fas fa-search"></i>
+        </button>
       </div>
-      <button type="submit">
-        <i className="fas fa-search"></i>
-      </button>
     </form>
   )
 }

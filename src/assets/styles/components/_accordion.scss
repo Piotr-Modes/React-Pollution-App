@@ -18,13 +18,13 @@
   transition: all 0.3s ease-in-out;
 
   &__title {
-    font-size: 17px;
+    font-size: 1.8rem;
     line-height: 15px;
     text-shadow: 2px 4px 3px rgba(0, 0, 0, 0.3);
   }
 
   &__number {
-    font-size: 14px;
+    font-size: 1.4rem;
     font-weight: 600;
     position: relative;
     left: -10px;
@@ -32,7 +32,7 @@
   }
 
   &__danger {
-    font-size: 13px;
+    font-size: 1.3rem;
     color: rgba(#274046, 0.7);
     font-weight: 600;
     margin-left: auto;
@@ -57,7 +57,7 @@
   &__text {
     text-align: justify;
     font-weight: 400;
-    font-size: 13px;
+    font-size: 1.3rem;
     padding: 18px;
   }
 

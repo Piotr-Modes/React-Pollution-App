@@ -80,7 +80,7 @@ const Autocomplete = props => {
     }
 
     return (
-      <div>
+      <div className="autocomplete-container">
         <input
           name="country"
           type="search"
