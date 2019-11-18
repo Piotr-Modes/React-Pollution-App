@@ -57,9 +57,7 @@ const App = props => {
   }
   return (
     <div className="app">
-      <Offline>
-        <OfflineMessage />
-      </Offline>
+      <OfflineMessage isOffline={props.isOffline} />
       <SearchForm
         isLoading={props.isLoading}
         searchValue={props.searchValue}

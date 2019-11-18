@@ -1,5 +1,6 @@
 import React from 'react'
 
-const OfflineMessage = () => <div className="offline-message">You are offline!</div>
+const OfflineMessage = ({ isOffline }) =>
+  isOffline ? <div className="offline-message">You are offline!</div> : null
 
 export default OfflineMessage
