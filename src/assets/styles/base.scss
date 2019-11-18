@@ -45,6 +45,18 @@ body {
   }
 }
 
+.error-message {
+  font-size: 1.7rem;
+}
+
+.offline-message {
+  font-size: 1.7rem;
+  color: $color-negative;
+  position: fixed;
+  left: 10px;
+  top: 10px;
+}
+
 /* width */
 ::-webkit-scrollbar {
   width: 6px;

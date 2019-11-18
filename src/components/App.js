@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
-import { Offline } from 'react-detect-offline'
 import {
   updateSearchValue,
   fetchLatestPollutionMeasurments,
@@ -35,7 +34,6 @@ const App = props => {
   }, [])
 
   useEffect(() => {
-    console.log(props.searchValue)
     props.savePollutionAppDataToLocalStorage()
   }, [props.searchValue, props.cityDetails])
 
@@ -59,14 +57,13 @@ const App = props => {
         activeAccordionState={activeAccordionState}
         setActiveAccordionState={setActiveAccordionState}
         errorMessage={props.cityDetailsErrors[cityObj.city]}
+        isOffline={props.isOffline}
       />
     )
   }
   return (
     <div className="app">
-      <Offline>
-        <OfflineMessage />
-      </Offline>
+      <OfflineMessage isOffline={props.isOffline} />
       <SearchForm
         isLoading={props.isLoading}
         searchValue={props.searchValue}
@@ -74,7 +71,7 @@ const App = props => {
         updateSearchValue={props.updateSearchValue}
         fetchLatestPollutionMeasurments={props.fetchLatestPollutionMeasurments}
       />
-      <ErrorMessage errorMessage={props.errorMessage} />
+      <ErrorMessage isOffline={props.isOffline} errorMessage={props.errorMessage} />
       <ListWithLoading
         isLoading={props.isLoading}
         list={props.tenMostPullutedCitiesInGivenCountry}
