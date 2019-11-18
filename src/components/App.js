@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import { Offline } from 'react-detect-offline'
 import {
@@ -13,6 +13,7 @@ import SearchForm from './SearchForm'
 import Accordion from './Accordion'
 import List from './utylities/List'
 import OfflineMessage from './utylities/OfflineMessage'
+import ErrorMessage from './utylities/ErrorMessage'
 import withLoading from './utylities/withLoading'
 
 import { getObjectKeyByValue } from '../helperFunctions'
@@ -20,6 +21,8 @@ import { getObjectKeyByValue } from '../helperFunctions'
 const ListWithLoading = withLoading(List)
 
 const App = props => {
+  const [activeAccordionState, setActiveAccordionState] = useState('')
+
   const allowedCountries = {
     Poland: 'PL',
     Germany: 'DE',
@@ -40,6 +43,7 @@ const App = props => {
     return (
       <Accordion
         key={index}
+        id={index}
         listNumber={index + 1}
         pm25Value={cityObj.value}
         getCityDetails={() =>
@@ -52,6 +56,9 @@ const App = props => {
         }
         title={cityObj.city}
         content={props.cityDetails[cityObj.city]}
+        activeAccordionState={activeAccordionState}
+        setActiveAccordionState={setActiveAccordionState}
+        errorMessage={props.cityDetailsErrors[cityObj.city]}
       />
     )
   }
@@ -65,6 +72,7 @@ const App = props => {
         updateSearchValue={props.updateSearchValue}
         fetchLatestPollutionMeasurments={props.fetchLatestPollutionMeasurments}
       />
+      <ErrorMessage errorMessage={props.errorMessage} />
       <ListWithLoading
         isLoading={props.isLoading}
         list={props.tenMostPullutedCitiesInGivenCountry}
@@ -80,7 +88,9 @@ const mapStateToProps = state => {
     isLoading: state.latestPollutionMeasurments.isLoading,
     tenMostPullutedCitiesInGivenCountry:
       state.latestPollutionMeasurments.tenMostPullutedCitiesInGivenCountry,
+    errorMessage: state.latestPollutionMeasurments.errorMessage,
     cityDetails: state.cityDetails.list,
+    cityDetailsErrors: state.cityDetails.errors,
   }
 }
 

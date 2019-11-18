@@ -39,17 +39,17 @@ export const fetchCityDetailsSuccess = ({ data, cityName }) => {
   }
 }
 
-export const fetchCityDetailsFailed = data => {
+export const fetchCityDetailsFailed = cityName => {
   return {
     type: FETCH_CITY_DETAILS_FAILED,
-    payload: data,
+    payload: cityName,
   }
 }
 
-export const fetchWikipediaPageIdsRequested = data => {
+export const fetchWikipediaPageIdsRequested = cityName => {
   return {
     type: FETCH_WIKIPEDIA_PAGE_IDS_REQUESTED,
-    payload: data.data.query.search[0].pageid,
+    payload: cityName,
   }
 }
 
@@ -60,10 +60,10 @@ export const fetchWikipediaPageIdsSuccess = data => {
   }
 }
 
-export const fetchWikipediaPageIdsFailed = data => {
+export const fetchWikipediaPageIdsFailed = cityName => {
   return {
     type: FETCH_WIKIPEDIA_PAGE_IDS_FAILED,
-    payload: data.data.query.search[0].pageid,
+    payload: cityName,
   }
 }
 
@@ -73,7 +73,7 @@ export const fetchCityDetails = (pageId, cityName) => async dispatch => {
     const wikipediaResponse = await WIKIPEDIA.getCityDescriptionForGivenWikipediaPageId(pageId)
     dispatch(fetchCityDetailsSuccess({ data: wikipediaResponse, cityName }))
   } catch (err) {
-    dispatch(fetchCityDetailsFailed({}))
+    dispatch(fetchCityDetailsFailed(cityName))
   }
 }
 
@@ -85,12 +85,12 @@ export const fetchWikipediaPageIds = (cityName, countryName) => async dispatch =
     )
     dispatch(fetchWikipediaPageIdsSuccess(listOfWikipediaPages))
   } catch (err) {
-    console.log(err)
-    // dispatch(fetchWikipediaPageIdsFailed({}))
+    dispatch(fetchWikipediaPageIdsFailed(cityName))
   }
 }
 
 export const getCityDetails = (cityName, countryName) => (dispatch, getState) => {
+  dispatch(fetchWikipediaPageIdsRequested(cityName))
   return dispatch(fetchWikipediaPageIds(cityName, countryName)).then(() => {
     const pageId = getState().cityDetails.currentlyFetchedPageId
 
@@ -98,10 +98,9 @@ export const getCityDetails = (cityName, countryName) => (dispatch, getState) =>
   })
 }
 
-export const fetchLatestPollutionMeasurmentsRequested = data => {
+export const fetchLatestPollutionMeasurmentsRequested = () => {
   return {
     type: FETCH_LATEST_POLLUTION_MEASURMENTS_REQUESTED,
-    payload: data,
   }
 }
 
@@ -112,20 +111,20 @@ export const fetchLatestPollutionMeasurmentsSuccess = data => {
   }
 }
 
-export const fetchLatestPollutionMeasurmentsFailed = data => {
+export const fetchLatestPollutionMeasurmentsFailed = () => {
   return {
     type: FETCH_LATEST_POLLUTION_MEASURMENTS_FAILED,
-    payload: data,
+    payload: 'Something went wrong :(',
   }
 }
 
 export const fetchLatestPollutionMeasurments = countryName => async dispatch => {
-  dispatch(fetchLatestPollutionMeasurmentsRequested({}))
+  dispatch(fetchLatestPollutionMeasurmentsRequested())
   try {
     const response = await OPENAQ.getLatestPullutionDataForGivenCountry(countryName)
     dispatch(fetchLatestPollutionMeasurmentsSuccess({ response: response.data }))
   } catch (err) {
-    dispatch(fetchLatestPollutionMeasurmentsFailed({}))
+    dispatch(fetchLatestPollutionMeasurmentsFailed())
   }
 }
 

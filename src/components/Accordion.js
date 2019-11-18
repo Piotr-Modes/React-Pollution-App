@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react'
 import Loader from './utylities/Loader'
+import ErrorMessage from './utylities/ErrorMessage'
 
 const Accordion = props => {
   const [activeState, setActiveState] = useState(false)
@@ -11,10 +12,16 @@ const Accordion = props => {
     setHeightState(!activeState ? '0px' : `${content.current.scrollHeight}px`)
   }, [props.content])
 
+  useEffect(() => {
+    if (props.activeAccordionState === props.id) return
+    if (activeState) toggleAccordion()
+  }, [props.activeAccordionState])
+
   const handleOnClick = () => {
     if (!props.content && !activeState) {
       props.getCityDetails()
     }
+    props.setActiveAccordionState(props.id)
     toggleAccordion()
     // return ()=>toggleAccordion()
   }
@@ -39,7 +46,7 @@ const Accordion = props => {
           <div className="accordion__text" dangerouslySetInnerHTML={{ __html: props.content }} />
         ) : (
           <div className="accordion__text">
-            <Loader />{' '}
+            {props.errorMessage ? <ErrorMessage errorMessage={props.errorMessage} /> : <Loader />}
           </div>
         )}
       </div>

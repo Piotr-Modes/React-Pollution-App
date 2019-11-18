@@ -13,6 +13,7 @@ import { updatePollutionAppDataInLocalStorage } from '../../helperFunctions'
 const initialState = {
   list: {},
   currentlyFetchedPageId: null,
+  errors: {},
 }
 
 export default (state = initialState, action) => {
@@ -23,6 +24,7 @@ export default (state = initialState, action) => {
     case FETCH_WIKIPEDIA_PAGE_IDS_REQUESTED:
       return {
         ...state,
+        errors: { ...state.errors, [action.payload]: null },
       }
     case FETCH_WIKIPEDIA_PAGE_IDS_SUCCESS:
       return {
@@ -32,6 +34,7 @@ export default (state = initialState, action) => {
     case FETCH_WIKIPEDIA_PAGE_IDS_FAILED:
       return {
         ...state,
+        errors: { ...state.errors, [action.payload]: 'Something went wrong :(' },
       }
     case FETCH_CITY_DETAILS_REQUESTED:
       return {
@@ -42,11 +45,13 @@ export default (state = initialState, action) => {
       return {
         ...state,
         list: { ...state.list, [action.payload.cityName]: action.payload.cityDetails },
+        errors: { ...state.errors, [action.payload.cityName]: null },
         isLoading: false,
       }
     case FETCH_CITY_DETAILS_FAILED:
       return {
         ...state,
+        errors: { ...state.errors, [action.payload]: 'Something went wrong :(' },
         isLoading: false,
       }
     case SAVE_CITY_DETAILS_TO_LOCAL_STORAGE:
