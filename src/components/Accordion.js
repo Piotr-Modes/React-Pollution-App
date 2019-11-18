@@ -23,7 +23,6 @@ const Accordion = props => {
     }
     props.setActiveAccordionState(props.id)
     toggleAccordion()
-    // return ()=>toggleAccordion()
   }
 
   const toggleAccordion = () => {
@@ -32,7 +31,7 @@ const Accordion = props => {
   }
 
   return (
-    <div className="accordion__section">
+    <div className="accordion-section">
       <button className={`accordion ${activeState ? 'active' : ''}`} onClick={handleOnClick}>
         <p className="accordion__number">{props.listNumber}.</p>
         <p className="accordion__title">{props.title}</p>

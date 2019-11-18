@@ -5,7 +5,7 @@ import cityDetailsReducer from './cityDetailsReducer'
 import searchValueReducer from './searchValueReducer'
 
 export default combineReducers({
-  latestPollutionMeasurments:  latestPollutionMeasurmentsReducer,
+  latestPollutionMeasurments: latestPollutionMeasurmentsReducer,
   cityDetails: cityDetailsReducer,
   searchValue: searchValueReducer,
 })
