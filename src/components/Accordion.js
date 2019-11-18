@@ -46,7 +46,11 @@ const Accordion = props => {
           <div className="accordion__text" dangerouslySetInnerHTML={{ __html: props.content }} />
         ) : (
           <div className="accordion__text">
-            {props.errorMessage ? <ErrorMessage errorMessage={props.errorMessage} /> : <Loader />}
+            {props.errorMessage ? (
+              <ErrorMessage isOffline={props.isOffline} errorMessage={props.errorMessage} />
+            ) : (
+              <Loader />
+            )}
           </div>
         )}
       </div>

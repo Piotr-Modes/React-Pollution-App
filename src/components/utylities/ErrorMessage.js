@@ -1,12 +1,8 @@
 import React from 'react'
-import { Offline, Online } from 'react-detect-offline'
 
-const ErrorMessage = ({ errorMessage }) =>
+const ErrorMessage = ({ errorMessage, isOffline }) =>
   errorMessage ? (
-    <div className="error-message">
-      <Online>{errorMessage}</Online>
-      <Offline>You are offline...</Offline>
-    </div>
+    <div className="error-message">{isOffline ? 'You are offline...' : errorMessage}</div>
   ) : null
 
 export default ErrorMessage
