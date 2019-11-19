@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react'
-import Loader from './utylities/Loader'
-import ErrorMessage from './utylities/ErrorMessage'
+import Loader from './utilities/Loader'
+import ErrorMessage from './utilities/ErrorMessage'
 
 const Accordion = props => {
   const [activeState, setActiveState] = useState(false)
