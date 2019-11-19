@@ -9,17 +9,30 @@ const countrySpecyficQueries = {
 }
 
 const getListOfWikipediaPagesForGivenCityAndCountry = (cityName, countryName) => {
-  return axios.get(
-    `${baseUrl}?action=query&list=search&format=json&srsearch=${cityName}${
-      countrySpecyficQueries[countryName] ? `+${countrySpecyficQueries[countryName].join('+')}` : ''
-    }&origin=*`,
-  )
+  return axios.get(baseUrl, {
+    params: {
+      action: 'query',
+      list: 'search',
+      format:'json',
+      origin: '*',
+      srsearch: `${cityName}${
+        countrySpecyficQueries[countryName] ? `+${countrySpecyficQueries[countryName].join('+')}` : ''}`     
+    }
+  })
 }
 
 const getCityDescriptionForGivenWikipediaPageId = pageId => {
-  return axios.get(
-    `${baseUrl}?action=query&pageids=${pageId}&format=json&prop=extracts&exintro&origin=*`,
-  )
+  if (!pageId) return
+  return axios.get(baseUrl, {
+    params: {
+      action: 'query',
+      pageids: pageId,
+      format: 'json',
+      prop: 'extracts',
+      exintro: '',
+      origin: '*',  
+    }
+  })
 }
 
 export default {
