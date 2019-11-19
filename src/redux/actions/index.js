@@ -172,7 +172,7 @@ export const setPollutionAppDataInitialStateToLocalStorage = () => {
   localStorage.setItem('pollutionAppData', JSON.stringify(initialState))
 }
 
-export const checkForPullutionAppDataInLocalStorage = () => async dispatch => {
+export const checkForPollutionAppDataInLocalStorage = () => async dispatch => {
   try {
     const response = await JSON.parse(localStorage.getItem('pollutionAppData'))
     if (response) dispatch(loadPollutionAppDataFromLocalStorage(response))

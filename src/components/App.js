@@ -4,16 +4,16 @@ import {
   updateSearchValue,
   fetchLatestPollutionMeasurments,
   getCityDetails,
-  checkForPullutionAppDataInLocalStorage,
+  checkForPollutionAppDataInLocalStorage,
   savePollutionAppDataToLocalStorage,
 } from '../redux/actions'
 
 import SearchForm from './SearchForm'
 import Accordion from './Accordion'
-import List from './utylities/List'
-import OfflineMessage from './utylities/OfflineMessage'
-import ErrorMessage from './utylities/ErrorMessage'
-import withLoading from './utylities/withLoading'
+import List from './utilities/List'
+import OfflineMessage from './utilities/OfflineMessage'
+import ErrorMessage from './utilities/ErrorMessage'
+import withLoading from './utilities/withLoading'
 
 import { getObjectKeyByValue } from '../helperFunctions'
 
@@ -30,7 +30,7 @@ const App = props => {
   }
 
   useEffect(() => {
-    props.checkForPullutionAppDataInLocalStorage()
+    props.checkForPollutionAppDataInLocalStorage()
   }, [])
 
   useEffect(() => {
@@ -97,6 +97,6 @@ export default connect(mapStateToProps, {
   updateSearchValue,
   fetchLatestPollutionMeasurments,
   getCityDetails,
-  checkForPullutionAppDataInLocalStorage,
+  checkForPollutionAppDataInLocalStorage,
   savePollutionAppDataToLocalStorage,
 })(App)
