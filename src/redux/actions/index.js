@@ -85,6 +85,7 @@ export const fetchWikipediaPageIds = (cityName, countryName) => async dispatch =
     )
     dispatch(fetchWikipediaPageIdsSuccess(listOfWikipediaPages))
   } catch (err) {
+    console.log(err.response)
     dispatch(fetchWikipediaPageIdsFailed(cityName))
   }
 }
