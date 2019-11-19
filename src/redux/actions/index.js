@@ -16,6 +16,7 @@ import {
   LOAD_SEARCH_VALUE_FROM_LOCAL_STORAGE,
   SAVE_CITY_DETAILS_TO_LOCAL_STORAGE,
   LOAD_CITY_DETAILS_FROM_LOCAL_STORAGE,
+  SET_POLLUTION_APP_DATA_INITIAL_STATE_TO_LOCAL_STORAGE,
 } from './types'
 
 export const updateSearchValue = value => {
@@ -171,6 +172,9 @@ export const setPollutionAppDataInitialStateToLocalStorage = () => {
     cityDetails: {},
   }
   localStorage.setItem('pollutionAppData', JSON.stringify(initialState))
+  return {
+    type: SET_POLLUTION_APP_DATA_INITIAL_STATE_TO_LOCAL_STORAGE,
+  }
 }
 
 export const checkForPollutionAppDataInLocalStorage = () => async dispatch => {
