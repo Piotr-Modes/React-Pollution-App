@@ -1,5 +1,8 @@
 export default {
   colors: {
+    primary: '#485563',
+    positive: '#00ff00',
+    negative: '#e60000',
     main: '#37474f',
     dark: '#263238',
     light: '#546e7a',
