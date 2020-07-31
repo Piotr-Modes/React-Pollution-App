@@ -14,7 +14,6 @@ import List from './utilities/List'
 import OfflineMessage from './utilities/OfflineMessage'
 import ErrorMessage from './utilities/ErrorMessage'
 import withLoading from './utilities/withLoading'
-import styled from 'styled-components'
 
 import { getObjectKeyByValue } from '../helperFunctions'
 
