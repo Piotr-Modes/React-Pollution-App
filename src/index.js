@@ -7,6 +7,10 @@ import { createStore, applyMiddleware, compose } from 'redux'
 import App from './components/App'
 import { Detector } from 'react-detect-offline'
 
+import { ThemeProvider } from 'styled-components'
+import GlobalStyles from './globalStyles'
+import Theme from './globalStyles/theme'
+
 import reducers from './redux/reducers'
 
 import './assets/styles/App.scss'
@@ -16,7 +20,10 @@ const store = createStore(reducers, composeEnhancers(applyMiddleware(reduxThunk)
 
 ReactDOM.render(
   <Provider store={store}>
-    <Detector render={({ online }) => <App isOffline={!online} />} />
+    <ThemeProvider theme={Theme}>
+      <GlobalStyles />
+      <Detector render={({ online }) => <App isOffline={!online} />} />
+    </ThemeProvider>
   </Provider>,
   document.querySelector('#root'),
 )
