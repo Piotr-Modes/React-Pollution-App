@@ -5,7 +5,7 @@ export default {
     negative: '#e60000',
     main: '#37474f',
     dark: '#263238',
-    light: '#546e7a',
+    light: 'white',
     lighter: '#b0bec5',
     text: '#fafafa',
     link: '#444444',
