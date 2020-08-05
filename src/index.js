@@ -13,8 +13,6 @@ import Theme from './globalStyles/theme'
 
 import reducers from './redux/reducers'
 
-import './assets/styles/App.scss'
-
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 const store = createStore(reducers, composeEnhancers(applyMiddleware(reduxThunk)))
 
