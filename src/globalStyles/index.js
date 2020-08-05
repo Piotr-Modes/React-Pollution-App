@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components'
+import styled, { createGlobalStyle } from 'styled-components'
 
 const GlobalStyle = createGlobalStyle`
 
@@ -33,18 +33,6 @@ body {
   text-align: center;
 }
 
-.app {
-  width: 70%;
-  min-width: 300px;
-  max-width: 520px;
-  margin: 0 auto;
-  padding-bottom: 30px;
-  position: relative;
-  @media (max-width: 330px) {
-    min-width: 270px;
-  }
-}
-
 /* width */
 ::-webkit-scrollbar {
   width: 6px;
@@ -65,5 +53,17 @@ body {
   background: #555;
 }
 `
+const AppWrapper = styled.div`
+  width: 70%;
+  min-width: 300px;
+  max-width: 520px;
+  margin: 0 auto;
+  padding-bottom: 30px;
+  position: relative;
+  @media (max-width: 330px) {
+    min-width: 270px;
+  }
+`
 
 export default GlobalStyle
+export { AppWrapper }

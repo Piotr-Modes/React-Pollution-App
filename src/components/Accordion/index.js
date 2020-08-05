@@ -1,14 +1,16 @@
 import React, { useState, useRef, useEffect } from 'react'
 import Loader from '../utilities/Loader'
 import ErrorMessage from '../utilities/ErrorMessage'
-import AccordionSection from './AccordionSection'
-import AccordionButton from './AccordionButton'
-import AccordionIcon from './AccordionIcon'
-import AccordionTitle from './AccordionTitle'
-import AccordionNumber from './AccordionNumber'
-import AccordionDanger from './AccordionDanger'
-import AccordionContent from './AccordionContent'
-import AccordionText from './AccordionText'
+import {
+  AccordionSection,
+  AccordionButton,
+  AccordionNumber,
+  AccordionTitle,
+  AccordionDanger,
+  AccordionIcon,
+  AccordionContent,
+  AccordionText,
+} from './Styles'
 
 const Accordion = props => {
   const [activeState, setActiveState] = useState(false)

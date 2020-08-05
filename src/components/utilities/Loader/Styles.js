@@ -40,18 +40,6 @@ const StyledLoader = styled.div`
     animation: fade-bars 1s linear infinite;
     animation-delay: 0.2s;
   }
-  /* @keyframes fade-bars {
-    0% {
-      box-shadow: 0em 5em 0 0em ${props => props.theme.colors.loader};
-    }
-    25%,
-    75% {
-      box-shadow: 0em 5em 0 0em rgba(white, 0.8);
-    }
-    100% {
-      box-shadow: 0em 5em 0 0em ${props => props.theme.colors.loader};
-    }
-  } */
 `
 
 export default StyledLoader

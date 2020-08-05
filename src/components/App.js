@@ -8,6 +8,7 @@ import {
   savePollutionAppDataToLocalStorage,
 } from '../redux/actions'
 
+import { AppWrapper } from '../globalStyles'
 import SearchForm from './SearchForm'
 import Accordion from './Accordion'
 import List from './utilities/List'
@@ -62,7 +63,7 @@ const App = props => {
     )
   }
   return (
-    <div className="app">
+    <AppWrapper>
       <OfflineMessage isOffline={props.isOffline} />
       <SearchForm
         isLoading={props.isLoading}
@@ -77,7 +78,7 @@ const App = props => {
         list={props.tenMostPullutedCitiesInGivenCountry}
         listRenderer={renderTenMostPullutedCities}
       />
-    </div>
+    </AppWrapper>
   )
 }
 

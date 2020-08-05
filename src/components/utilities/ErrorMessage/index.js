@@ -1,5 +1,5 @@
 import React from 'react'
-import StyledErrorMessage from './StyledErrorMessage'
+import StyledErrorMessage from './Styles'
 
 const ErrorMessage = ({ errorMessage, isOffline }) =>
   errorMessage ? (

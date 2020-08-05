@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-const StyledOflineMessage = styled.div`
+const StyledOfflineMessage = styled.div`
   font-size: 1.7rem;
   color: ${props => props.theme.colors.negative};
   position: fixed;
@@ -8,4 +8,4 @@ const StyledOflineMessage = styled.div`
   top: 10px;
 `
 
-export default StyledOflineMessage
+export default StyledOfflineMessage
