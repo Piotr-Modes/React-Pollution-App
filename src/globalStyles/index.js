@@ -8,11 +8,15 @@ const GlobalStyle = createGlobalStyle`
 
 html {
   font-size: 62.5%;
+}
 
-  @media only screen and(max-width:750px) {
+@media only screen and (max-width:750px) {
+  html {
     font-size: 57%;
-  }
-  @media only screen and(max-width:450px) {
+  }    
+}
+@media only screen and (max-width:450px) {
+  html {
     font-size: 55%;
   }
 }
