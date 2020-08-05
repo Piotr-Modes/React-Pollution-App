@@ -32,8 +32,8 @@ const FormErrorsText = styled.p`
   @media (max-width: 350px) {
     font-size: 1rem;
   }
-}
 `
+
 const StyledButton = styled.button`
   display: flex;
   font-weight: bold;

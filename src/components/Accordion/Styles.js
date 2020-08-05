@@ -45,7 +45,7 @@ const AccordionNumber = styled.p`
   font-weight: 600;
   position: relative;
   left: -10px;
-  color: rgba(15, 25, 27, 0.7);
+  color: ${props => props.theme.colors.primary};
 `
 const AccordionTitle = styled.p`
   font-size: 1.8rem;
@@ -54,7 +54,7 @@ const AccordionTitle = styled.p`
 `
 const StyledP = styled.p`
   font-size: 1.3rem;
-  color: rgba(15, 25, 27, 0.7);
+  color: ${props => props.theme.colors.primary};
   font-weight: 600;
   margin-left: auto;
   & span {

@@ -5,13 +5,13 @@ const AutocompleteWrappper = styled.div`
   position: relative;
 `
 const StyledInput = styled.input`
-  font-family: 'Fira Sans Condensed', arial;
+  font-family: ${props => props.theme.fonts.main};
   font-size: 1.8rem;
   width: 100%;
   border: none;
   height: 43px;
   padding: 23px 15px 20px 15px;
-  color: rgba(0, 0, 0, 0.7);
+  color: ${props => props.theme.colors.primary};
   outline: none;
   box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.4);
 

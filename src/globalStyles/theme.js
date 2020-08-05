@@ -1,22 +1,32 @@
-export default {
+import { css } from 'styled-components'
+
+const sizesForMediaQueries = [750, 450, 350, 330]
+
+const theme = {
   colors: {
-    primary: '#485563',
+    appBackground: `linear-gradient(to bottom, #274046, #e6dada)`,
+    appBackgroundFallback: '#e6dada',
+    primary: 'rgba(15, 25, 27, 0.7)',
     positive: '#00ff00',
     negative: '#e60000',
-    main: '#37474f',
-    dark: '#263238',
-    light: 'white',
-    lighter: '#b0bec5',
-    text: '#fafafa',
-    link: '#444444',
     loader: 'white',
+    scrollbar: {
+      track: '#f1f1f1',
+      thumb: '#888',
+      hover: '#555',
+    },
   },
-  fontSizes: {
-    large: '3rem',
-    medium: '2rem',
-    p: '1,5rem',
+  fonts: {
+    main: 'Fira Sans Condensed, arial',
   },
-  mediaQueries: {
-    bellow768: `only screen and (max-width: 768px)`,
-  },
+  media: sizesForMediaQueries.reduce((acc, size) => {
+    acc[`bellow${size}`] = (...args) => css`
+      @media (max-width: ${size}px) {
+        ${css(...args)};
+      }
+    `
+    return acc
+  }, {}),
 }
+console.log(theme.media)
+export default theme
