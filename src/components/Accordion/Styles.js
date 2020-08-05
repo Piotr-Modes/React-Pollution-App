@@ -41,9 +41,11 @@ const AccordionButton = styled.button`
   }
 `
 const AccordionNumber = styled.p`
-  font-size: 1.8rem;
-  line-height: 15px;
-  text-shadow: 2px 4px 3px rgba(0, 0, 0, 0.3);
+  font-size: 1.4rem;
+  font-weight: 600;
+  position: relative;
+  left: -10px;
+  color: rgba(15, 25, 27, 0.7);
 `
 const AccordionTitle = styled.p`
   font-size: 1.8rem;
@@ -52,7 +54,7 @@ const AccordionTitle = styled.p`
 `
 const StyledP = styled.p`
   font-size: 1.3rem;
-  color: rgba(#274046, 0.7);
+  color: rgba(15, 25, 27, 0.7);
   font-weight: 600;
   margin-left: auto;
   & span {
@@ -62,7 +64,7 @@ const StyledP = styled.p`
 const AccordionDanger = ({ dangerText, neutralText }) => {
   return (
     <StyledP>
-      <span>{dangerText}</span> {neutralText}
+      <span>{dangerText} </span> {neutralText}
     </StyledP>
   )
 }
