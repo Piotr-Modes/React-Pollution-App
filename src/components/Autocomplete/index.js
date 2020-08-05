@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { AutocompleteWrappper, StyledInput, SuggestionsList, Suggestion } from './Styles'
 
 const Autocomplete = props => {
   const [autocompleteState, setAutocompleteState] = useState({
@@ -65,23 +66,23 @@ const Autocomplete = props => {
     let suggestionsListComponent
     if (autocompleteState.showSuggestions && props.searchValue) {
       suggestionsListComponent = (
-        <ul className="suggestions">
+        <SuggestionsList>
           {autocompleteState.filteredSuggestions.map((suggestion, index) => (
-            <li
-              className={index === autocompleteState.activeSuggestion ? 'active' : ''}
+            <Suggestion
+              activeState={index === autocompleteState.activeSuggestion}
               key={suggestion}
               onClick={onClick}
             >
               {suggestion}
-            </li>
+            </Suggestion>
           ))}
-        </ul>
+        </SuggestionsList>
       )
     }
 
     return (
-      <div className="autocomplete-container">
-        <input
+      <AutocompleteWrappper>
+        <StyledInput
           name="country"
           type="search"
           onChange={onChange}
@@ -90,7 +91,7 @@ const Autocomplete = props => {
           placeholder={props.placeholder}
         />
         {suggestionsListComponent}
-      </div>
+      </AutocompleteWrappper>
     )
   }
 

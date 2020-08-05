@@ -1,6 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import { capitalize } from '../helperFunctions'
-import Autocomplete from './Autocomplete'
+import { capitalize } from '../../helperFunctions'
+import Autocomplete from '../Autocomplete'
+import {
+  StyledForm,
+  SearchFormErrors,
+  SearchFormHeader,
+  SearchFormInputsWrapper,
+  StyledButton,
+} from './Styles'
 
 const SearchForm = props => {
   const [searchFormState, setSearchFormState] = useState({
@@ -44,10 +51,10 @@ const SearchForm = props => {
     props.fetchLatestPollutionMeasurments(props.allowedCountries[selectedCountry])
   }
   return (
-    <form className="search-form" onFocus={handleOnFocus} onSubmit={handleFormSubmit}>
-      <h1 className="search-form__header">Search for the most polluted cities in:</h1>
-      <div className="search-form__inputs-container">
-        <FormErrors formErrors={searchFormState.formErrors} />
+    <StyledForm onFocus={handleOnFocus} onSubmit={handleFormSubmit}>
+      <SearchFormHeader>Search for the most polluted cities in:</SearchFormHeader>
+      <SearchFormInputsWrapper>
+        <SearchFormErrors formErrors={searchFormState.formErrors[0]} />
         <Autocomplete
           suggestions={Object.keys(props.allowedCountries)}
           handleFormSubmit={props.handleFormSubmit}
@@ -55,19 +62,11 @@ const SearchForm = props => {
           updateSearchValue={props.updateSearchValue}
           placeholder="Country"
         />
-        <button type="submit">
-          <i className="fas fa-search"></i>
-        </button>
-      </div>
-    </form>
-  )
-}
-
-const FormErrors = ({ formErrors }) => {
-  return (
-    <div className="form-errors">
-      <p>{formErrors[0]}</p>
-    </div>
+        <StyledButton type="submit">
+          <i className="fas fa-search" />
+        </StyledButton>
+      </SearchFormInputsWrapper>
+    </StyledForm>
   )
 }
 
